@@ -13034,8 +13034,7 @@ class mPDF
 	// Moved outside WMF as also needed for SVG
 	function _putformobjects()
 	{
-		reset($this->formobjects);
-		while (list($file, $info) = each($this->formobjects)) {
+		foreach ($this->formobjects as $file => $info) {
 			$this->_newobj();
 			$this->formobjects[$file]['n'] = $this->n;
 			$this->_out('<</Type /XObject');
