@@ -13782,9 +13782,9 @@ class mPDF
 		// and add half to the top and half to the bottom. BUT
 		// If an inline element has a font-size less than the block element, and the line-height is set as an em or % value
 		// it will add too much leading below the font and expand the height of the line - so just use the block element exttop/extbottom:
-		if (preg_match('/mm/', $CSSlineheight) && $ypos['boxtop'] < $blockYpos['boxtop'] && $ypos['boxbottom'] > $blockYpos['boxbottom']) {
-			$ypos['exttop'] = $blockYpos['exttop'];
-			$ypos['extbottom'] = $blockYpos['extbottom'];
+		if (preg_match('/mm/', $CSSlineheight) && $blockYpos !== false && $ypos['boxtop'] < $blockYpos['boxtop'] && $ypos['boxbottom'] > $blockYpos['boxbottom']) {
+			$ypos['exttop'] = (float) $blockYpos['exttop'];
+			$ypos['extbottom'] = (float) $blockYpos['extbottom'];
 		} else {
 			$leading += ($lineheight - $fontheight);
 
