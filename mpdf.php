@@ -12432,7 +12432,7 @@ class mPDF
 						$p += 4;
 					} elseif ($type == 'IEND') {
 						break;
-					} elseif (preg_match('/[a-zA-Z][4]/', $type)) {
+					} elseif (preg_match('/[a-zA-Z]{4}/', $type)) {
 						$p += $n + 4;
 					} else {
 						return $this->_imageError($file, $firsttime, 'Error parsing PNG image data');
