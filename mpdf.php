@@ -2143,7 +2143,7 @@ class mPDF
 
 	/* -- BACKGROUNDS -- */
 
-	function _resizeBackgroundImage($imw, $imh, $cw, $ch, $resize = 0, $repx, $repy, $pba = array(), $size = array())
+	function _resizeBackgroundImage($imw, $imh, $cw, $ch, $resize = 0, $repx = 0, $repy = 0, $pba = array(), $size = array())
 	{
 		// pba is background positioning area (from CSS background-origin) may not always be set [x,y,w,h]
 		// size is from CSS3 background-size - takes precendence over old resize
@@ -13282,7 +13282,7 @@ class mPDF
 		}
 	}
 
-	function CircularText($x, $y, $r, $text, $align = 'top', $fontfamily = '', $fontsize = 0, $fontstyle = '', $kerning = 120, $fontwidth = 100, $divider)
+	function CircularText($x, $y, $r, $text, $align = 'top', $fontfamily = '', $fontsize = 0, $fontstyle = '', $kerning = 120, $fontwidth = 100, $divider = '')
 	{
 		if (!class_exists('directw', false)) {
 			include(_MPDF_PATH . 'classes/directw.php');
@@ -14438,7 +14438,7 @@ class mPDF
 
 	/* -- TABLES -- */
 
-	function TableHeaderFooter($content = '', $tablestartpage = '', $tablestartcolumn = '', $horf = 'H', $level, $firstSpread = true, $finalSpread = true)
+	function TableHeaderFooter($content = '', $tablestartpage = '', $tablestartcolumn = '', $horf = 'H', $level = 0, $firstSpread = true, $finalSpread = true)
 	{
 		if (($horf == 'H' || $horf == 'F') && !empty($content)) { // mPDF 5.7.2
 			$table = &$this->table[1][1];
@@ -16625,7 +16625,7 @@ class mPDF
 
 	/* -- CSS-POSITION -- */
 
-	function WriteFixedPosHTML($html = '', $x, $y, $w, $h, $overflow = 'visible', $bounding = array())
+	function WriteFixedPosHTML($html = '', $x = 0, $y = 0, $w = 0, $h = 0, $overflow = 'visible', $bounding = array())
 	{
 		// $overflow can be 'hidden', 'visible' or 'auto' - 'auto' causes autofit to size
 		// Annotations disabled - enabled in mPDF 5.0
@@ -17611,7 +17611,7 @@ class mPDF
 
 	/* -- CSS-PAGE -- */
 
-	function SetPagedMediaCSS($name = '', $first, $oddEven)
+	function SetPagedMediaCSS($name = '', $first = false, $oddEven = '')
 	{
 		if ($oddEven == 'E') {
 			if ($this->directionality == 'rtl') {
@@ -20440,7 +20440,7 @@ class mPDF
 
 	/* -- END BORDER-RADIUS -- */
 
-	function PaintDivLnBorder($state = 0, $blvl = 0, $h)
+	function PaintDivLnBorder($state = 0, $blvl = 0, $h = 0)
 	{
 		// $state = 0 normal; 1 top; 2 bottom; 3 top and bottom
 		$this->ColDetails[$this->CurrCol]['bottom_margin'] = $this->y + $h;
@@ -21655,7 +21655,7 @@ class mPDF
 
 	/* -- TABLES -- */
 
-	function TableCheckMinWidth($maxwidth, $forcewrap = 0, $textbuffer, $checkletter = false)
+	function TableCheckMinWidth($maxwidth, $forcewrap = 0, $textbuffer = array(), $checkletter = false)
 	{ // mPDF 6
 		$acclength = 0; // mPDF 6 (accumulated length across > 1 chunk)
 		$acclongest = 0; // mPDF 6 (accumulated length max across > 1 chunk)
@@ -23259,7 +23259,7 @@ class mPDF
 	}
 
 	// CHANGED TO ALLOW TABLE BORDER TO BE SPECIFIED CORRECTLY - added border_details
-	function _tableRect($x, $y, $w, $h, $bord = -1, $details = array(), $buffer = false, $bSeparate = false, $cort = 'cell', $tablecorner = '', $bsv = 0, $bsh = 0)
+	function _tableRect($x, $y, $w, $h = 0, $bord = -1, $details = array(), $buffer = false, $bSeparate = false, $cort = 'cell', $tablecorner = '', $bsv = 0, $bsh = 0)
 	{
 		$cellBorderOverlay = array();
 
@@ -28884,7 +28884,7 @@ class mPDF
 		}
 	}
 
-	function _setBidiCodes($mode = 'start', $bdf)
+	function _setBidiCodes($mode = 'start', $bdf = '')
 	{
 		$s = '';
 		if ($mode == 'end') {

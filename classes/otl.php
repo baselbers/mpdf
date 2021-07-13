@@ -1612,7 +1612,7 @@ class otl
 		return 0;
 	}
 
-	function _applyGSUBsubtable($lookupID, $subtable, $ptr, $currGlyph, $currGID, $subtable_offset, $Type, $Flag, $MarkFilteringSet, $LuCoverage, $level = 0, $currentTag, $is_old_spec, $tagInt)
+	function _applyGSUBsubtable($lookupID, $subtable, $ptr, $currGlyph, $currGID, $subtable_offset, $Type, $Flag, $MarkFilteringSet, $LuCoverage, $level = 0, $currentTag = '', $is_old_spec = false, $tagInt = 0)
 	{
 		$ignore = $this->_getGCOMignoreString($Flag, $MarkFilteringSet);
 
@@ -3290,7 +3290,7 @@ class otl
 		return $pos;
 	}
 
-	function _applyGPOSsubtable($lookupID, $subtable, $ptr, $currGlyph, $currGID, $subtable_offset, $Type, $Flag, $MarkFilteringSet, $LuCoverage, $tag, $level = 0, $is_old_spec)
+	function _applyGPOSsubtable($lookupID, $subtable, $ptr, $currGlyph, $currGID, $subtable_offset, $Type, $Flag, $MarkFilteringSet, $LuCoverage, $tag, $level = 0, $is_old_spec = false)
 	{
 		if (($Flag & 0x0001) == 1) {
 			$dir = 'RTL';
@@ -4626,7 +4626,7 @@ class otl
 	  ON    Other Neutrals      All other characters, including OBJECT REPLACEMENT CHARACTER
 	 */
 
-	function _bidiSort($ta, $str = '', $dir, &$chunkOTLdata, $useGPOS)
+	function _bidiSort($ta, $str = '', $dir = '', &$chunkOTLdata = array(), $useGPOS = '')
 	{
 
 		$pel = 0; // paragraph embedding level
