@@ -6475,7 +6475,7 @@ class mPDF
 			$lastfontreqstyle = null;
 			$lastfontstyle = null;
 		}
-		if ($blockdir == 'ltr' && strpos($lastfontreqstyle, "I") !== false && strpos($lastfontstyle, "I") === false) { // Artificial italic
+		if ($blockdir == 'ltr' && strpos((string)$lastfontreqstyle, "I") !== false && strpos($lastfontstyle, "I") === false) { // Artificial italic
 			$lastitalic = $this->FontSize * 0.15 * _MPDFK;
 		} else {
 			$lastitalic = 0;

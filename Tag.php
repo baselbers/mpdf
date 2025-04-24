@@ -4265,7 +4265,13 @@ class Tag
 				if (isset($properties['BACKGROUND-COLOR'])) {
 					$this->mpdf->table[$this->mpdf->tableLevel][$this->mpdf->tbctr[$this->mpdf->tableLevel]]['bgcolor'][$this->mpdf->row] = $properties['BACKGROUND-COLOR'];
 				} else if (isset($attr['BGCOLOR']))
-					$this->mpdf->table[$this->mpdf->tableLevel][$this->mpdf->tbctr[$this->mpdf->tableLevel]]['bgcolor'][$this->mpdf->row] = $attr['BGCOLOR'];
+					//$this->mpdf->table[$this->mpdf->tableLevel][$this->mpdf->tbctr[$this->mpdf->tableLevel]]['bgcolor'][$this->mpdf->row] = $attr['BGCOLOR'];
+					$level = $this->mpdf->tableLevel;
+					$ctr   = $this->mpdf->tbctr[$level];
+					$row   = $this->mpdf->row;
+
+					$this->mpdf->table[$level][$ctr]['bgcolor'] = (array)($this->mpdf->table[$level][$ctr]['bgcolor'] ?? []);
+					$this->mpdf->table[$level][$ctr]['bgcolor'][$row] = $attr['BGCOLOR'];
 
 				/* -- BACKGROUNDS -- */
 				if (isset($properties['BACKGROUND-GRADIENT']) && !$this->mpdf->kwt && !$this->mpdf->ColActive) {
@@ -5024,7 +5030,7 @@ class Tag
 					$this->mpdf->Reset();
 					$this->mpdf->pageoutput[$this->mpdf->page] = array();
 				}
-				$this->mpdf->y = (($this->mpdf->blk[$this->mpdf->blklvl]['float_endpos'] * 1000) % 1000000) / 1000; // mod changes operands to integers before processing
+				$this->mpdf->y = ((int)($this->mpdf->blk[$this->mpdf->blklvl]['float_endpos'] * 1000) % 1000000) / 1000;
 			}
 			/* -- END CSS-FLOAT -- */
 
